@@ -1,0 +1,12 @@
+{
+  "name": "vibe-coding-workflow",
+  "description": "Structured AI-assisted development workflow in Chinese: 7 commands covering design, review, testing, development, code review and documentation",
+  "version": "1.0.0",
+  "author": {
+    "name": "Fred Cao"
+  },
+  "homepage": "https://github.com/anthropics/vibe-coding-workflow",
+  "repository": "https://github.com/anthropics/vibe-coding-workflow",
+  "license": "MIT",
+  "keywords": ["workflow", "vibe-coding", "chinese", "development", "code-review", "testing"]
+}
