@@ -5,8 +5,8 @@
   "author": {
     "name": "Fred Cao"
   },
-  "homepage": "https://github.com/anthropics/vibe-coding-workflow",
-  "repository": "https://github.com/anthropics/vibe-coding-workflow",
+  "homepage": "https://github.com/cao-xu/vibe-coding-workflow",
+  "repository": "https://github.com/cao-xu/vibe-coding-workflow",
   "license": "MIT",
   "keywords": ["workflow", "vibe-coding", "chinese", "development", "code-review", "testing"]
 }
