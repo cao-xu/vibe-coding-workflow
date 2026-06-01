@@ -5,12 +5,14 @@
 ### 变更
 
 - 将仓库从 Claude slash-command 插件迁移为纯 Agent Skills 包。
+- 将公开仓库入口更新为 `cao-xu/sdd-workflow-skills`。
 - 发布 4 个可复用 skills：
   - `design`
   - `review`
   - `test-design`
   - `code-review`
 - 更新 `README.md`，说明 `npx skills add` 和 skills.sh 安装方式。
+- 移除 README 中暂不可用的 skills.sh 图片 badge 和详情页链接，改为链接仓库内的 `SKILL.md` 文件。
 
 ### 删除
 

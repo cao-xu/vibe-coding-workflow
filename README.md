@@ -1,7 +1,5 @@
 # SDD 工作流 Skills
 
-[![skills.sh](https://www.skills.sh/b/cao-xu/sdd-workflow-skills)](https://www.skills.sh/cao-xu/sdd-workflow-skills/design)
-
 面向 Codex、Claude Code 以及其他支持 Agent Skills 格式的 SDD（Spec-Driven Development，规范驱动开发）工作流 skills。
 
 这个仓库只发布最适合沉淀成可复用 skill 的 4 个环节。完整开发工作流仍然包含实现、测试执行、文档整理和经验沉淀等步骤；这些步骤更依赖具体项目、运行环境和人的判断，因此不在本仓库中单独做成 skill。
@@ -10,10 +8,10 @@
 
 | Skill | 用途 | 主要产物 |
 |-------|------|----------|
-| [`design`](https://www.skills.sh/cao-xu/sdd-workflow-skills/design) | 澄清需求、调研仓库、输出技术方案 | `docs/features/<feature-name>/design.md`、`todo.md` |
-| [`review`](https://www.skills.sh/cao-xu/sdd-workflow-skills/review) | 在实现前独立评审技术方案 | `review_notes.md` |
-| [`test-design`](https://www.skills.sh/cao-xu/sdd-workflow-skills/test-design) | 基于需求和方案设计高 ROI 测试 | `test_design.md` |
-| [`code-review`](https://www.skills.sh/cao-xu/sdd-workflow-skills/code-review) | 两阶段代码评审：先看代码质量，再看设计符合度 | `code_review.md` |
+| [`design`](skills/design/SKILL.md) | 澄清需求、调研仓库、输出技术方案 | `docs/features/<feature-name>/design.md`、`todo.md` |
+| [`review`](skills/review/SKILL.md) | 在实现前独立评审技术方案 | `review_notes.md` |
+| [`test-design`](skills/test-design/SKILL.md) | 基于需求和方案设计高 ROI 测试 | `test_design.md` |
+| [`code-review`](skills/code-review/SKILL.md) | 两阶段代码评审：先看代码质量，再看设计符合度 | `code_review.md` |
 
 ## 安装
 
@@ -40,6 +38,8 @@ npx skills add cao-xu/sdd-workflow-skills --list
 ```bash
 npx skills add https://github.com/cao-xu/sdd-workflow-skills --skill design
 ```
+
+当前仓库已经按 skills CLI 支持的 GitHub repo 格式组织。若 skills.sh 网页详情页暂时没有索引到新仓库名，以 `npx skills add` 的发现和安装结果为准。
 
 ## 工作流定位
 
