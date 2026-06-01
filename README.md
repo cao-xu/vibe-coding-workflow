@@ -6,7 +6,7 @@
 
 这个仓库以 SDD 工作流 skills 为主体：只把最适合沉淀成可复用 skill 的 4 个流程环节发布出来。完整开发工作流仍然包含实现、测试执行、文档整理和经验沉淀等步骤；这些步骤更依赖具体项目、运行环境和人的判断，因此不在本仓库中单独做成 skill。
 
-同时，本仓库也收录一个通用辅助 skill：`optdef`（OptDef，优定），用于在正式回答前优化问题定义和答案要求。
+同时，本仓库也收录一个通用辅助 skill：[`optdef`](https://mp.weixin.qq.com/s?__biz=MzkwOTc0Nzc1Nw==&mid=2247483683&idx=1&sn=4911981ef23ccab0d006e278d00f3748&scene=21&poc_token=HDtuHWqjVvDQzx11b1ko0WKifny8j4pGvL4AVt7x)（OptDef，优定），用于在正式回答前优化问题定义和答案要求。
 
 ## SDD 工作流 Skills
 
@@ -56,8 +56,6 @@ npx skills add https://github.com/cao-xu/sdd-workflow-skills --skill design
 ```
 
 当前仓库已经按 skills CLI 支持的 GitHub repo 格式组织。若 skills.sh 网页详情页暂时没有索引到新仓库名，以 `npx skills add` 的发现和安装结果为准。
-
-Skills.sh 生态入口：[skills.sh](https://www.skills.sh/)。当前单个 skill 详情页仍可能返回 404；安装与发现请以 `npx skills add cao-xu/sdd-workflow-skills --list` 为准。
 
 ## 工作流定位
 
