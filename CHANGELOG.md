@@ -32,7 +32,7 @@
 使用以下命令安装新的 skills：
 
 ```bash
-npx skills add cao-xu/vibe-coding-workflow --skill '*' -a codex -a claude-code
+npx skills add cao-xu/sdd-workflow-skills --skill '*' -a codex -a claude-code
 ```
 
 旧 slash commands 不再支持。

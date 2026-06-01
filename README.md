@@ -1,6 +1,6 @@
 # SDD 工作流 Skills
 
-[![skills.sh](https://www.skills.sh/b/cao-xu/vibe-coding-workflow)](https://www.skills.sh/cao-xu/vibe-coding-workflow/design)
+[![skills.sh](https://www.skills.sh/b/cao-xu/sdd-workflow-skills)](https://www.skills.sh/cao-xu/sdd-workflow-skills/design)
 
 面向 Codex、Claude Code 以及其他支持 Agent Skills 格式的 SDD（Spec-Driven Development，规范驱动开发）工作流 skills。
 
@@ -10,35 +10,35 @@
 
 | Skill | 用途 | 主要产物 |
 |-------|------|----------|
-| [`design`](https://www.skills.sh/cao-xu/vibe-coding-workflow/design) | 澄清需求、调研仓库、输出技术方案 | `docs/features/<feature-name>/design.md`、`todo.md` |
-| [`review`](https://www.skills.sh/cao-xu/vibe-coding-workflow/review) | 在实现前独立评审技术方案 | `review_notes.md` |
-| [`test-design`](https://www.skills.sh/cao-xu/vibe-coding-workflow/test-design) | 基于需求和方案设计高 ROI 测试 | `test_design.md` |
-| [`code-review`](https://www.skills.sh/cao-xu/vibe-coding-workflow/code-review) | 两阶段代码评审：先看代码质量，再看设计符合度 | `code_review.md` |
+| [`design`](https://www.skills.sh/cao-xu/sdd-workflow-skills/design) | 澄清需求、调研仓库、输出技术方案 | `docs/features/<feature-name>/design.md`、`todo.md` |
+| [`review`](https://www.skills.sh/cao-xu/sdd-workflow-skills/review) | 在实现前独立评审技术方案 | `review_notes.md` |
+| [`test-design`](https://www.skills.sh/cao-xu/sdd-workflow-skills/test-design) | 基于需求和方案设计高 ROI 测试 | `test_design.md` |
+| [`code-review`](https://www.skills.sh/cao-xu/sdd-workflow-skills/code-review) | 两阶段代码评审：先看代码质量，再看设计符合度 | `code_review.md` |
 
 ## 安装
 
 为 Codex 和 Claude Code 安装全部 skills：
 
 ```bash
-npx skills add cao-xu/vibe-coding-workflow --skill '*' -a codex -a claude-code
+npx skills add cao-xu/sdd-workflow-skills --skill '*' -a codex -a claude-code
 ```
 
 只安装一个 skill：
 
 ```bash
-npx skills add cao-xu/vibe-coding-workflow --skill design
+npx skills add cao-xu/sdd-workflow-skills --skill design
 ```
 
 查看可用 skills：
 
 ```bash
-npx skills add cao-xu/vibe-coding-workflow --list
+npx skills add cao-xu/sdd-workflow-skills --list
 ```
 
 也可以使用完整 GitHub URL：
 
 ```bash
-npx skills add https://github.com/cao-xu/vibe-coding-workflow --skill design
+npx skills add https://github.com/cao-xu/sdd-workflow-skills --skill design
 ```
 
 ## 工作流定位
