@@ -14,9 +14,9 @@
 - 新增通用问题定义优化 skill：
   - `optdef`（OptDef，优定）
 - 更新 `README.md`，说明 `npx skills add` 和 skills.sh 安装方式。
-- 将 README 中暂不可用的 skills.sh 官方图片 badge 和详情页链接，改为稳定的静态 badge，并链接仓库内的 `SKILL.md` 文件。
+- 移除 README 顶部的 skills.sh badge，避免在 skills.sh 索引不稳定时展示误导信息。
 - 在 README 安装说明中补充轻量的 skills.sh 生态入口。
-- 将 skills.sh badge 改为绿色，并移除当前会 404 的单个 skills.sh skill 详情页链接。
+- 移除当前会 404 的单个 skills.sh skill 详情页链接。
 
 ### 删除
 
