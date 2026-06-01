@@ -43,6 +43,8 @@ npx skills add https://github.com/cao-xu/sdd-workflow-skills --skill design
 
 当前仓库已经按 skills CLI 支持的 GitHub repo 格式组织。若 skills.sh 网页详情页暂时没有索引到新仓库名，以 `npx skills add` 的发现和安装结果为准。
 
+Skills.sh 生态入口：[skills.sh](https://www.skills.sh/) · [`design`](https://www.skills.sh/cao-xu/sdd-workflow-skills/design) · [`review`](https://www.skills.sh/cao-xu/sdd-workflow-skills/review) · [`test-design`](https://www.skills.sh/cao-xu/sdd-workflow-skills/test-design) · [`code-review`](https://www.skills.sh/cao-xu/sdd-workflow-skills/code-review)
+
 ## 工作流定位
 
 推荐流程：

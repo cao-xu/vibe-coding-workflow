@@ -13,6 +13,7 @@
   - `code-review`
 - 更新 `README.md`，说明 `npx skills add` 和 skills.sh 安装方式。
 - 将 README 中暂不可用的 skills.sh 官方图片 badge 和详情页链接，改为稳定的静态 badge，并链接仓库内的 `SKILL.md` 文件。
+- 在 README 安装说明中补充轻量的 skills.sh 生态入口和单个 skill 页面链接。
 
 ### 删除
 
