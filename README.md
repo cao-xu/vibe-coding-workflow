@@ -97,10 +97,6 @@ Skills 可以读取项目记忆文件作为上下文：
 
 本仓库的 skills 不会自动修改这些文件。如果某条经验可能值得沉淀，skill 会输出 `Memory update candidates` 候选项，由人决定是否写入 `AGENTS.md` 或 `CLAUDE.md`。
 
-## 旧入口说明
-
-旧的 slash command 入口已经删除。本仓库现在是纯 Agent Skills 包，不再保留旧命令文件的兼容层。
-
 ## License
 
 [MIT](LICENSE)
