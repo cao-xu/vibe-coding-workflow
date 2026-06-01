@@ -1,5 +1,7 @@
 # SDD 工作流 Skills
 
+[![skills.sh ready](https://img.shields.io/badge/skills.sh-ready-111111?labelColor=555555)](#安装)
+
 面向 Codex、Claude Code 以及其他支持 Agent Skills 格式的 SDD（Spec-Driven Development，规范驱动开发）工作流 skills。
 
 这个仓库只发布最适合沉淀成可复用 skill 的 4 个环节。完整开发工作流仍然包含实现、测试执行、文档整理和经验沉淀等步骤；这些步骤更依赖具体项目、运行环境和人的判断，因此不在本仓库中单独做成 skill。
