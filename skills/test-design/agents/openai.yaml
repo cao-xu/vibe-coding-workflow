@@ -1,4 +1,7 @@
 interface:
   display_name: "Test Design"
   short_description: "Design practical feature tests"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+  brand_color: "#F59E0B"
   default_prompt: "Use $test-design to design high-ROI tests and produce docs/features/<feature-name>/test_design.md."

@@ -1,4 +1,7 @@
 interface:
   display_name: "Review"
   short_description: "Review SDD technical designs"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+  brand_color: "#7C3AED"
   default_prompt: "Use $review to independently review a feature design and produce review_notes.md."

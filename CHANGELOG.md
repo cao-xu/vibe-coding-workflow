@@ -17,6 +17,7 @@
 - 移除 README 顶部的 skills.sh badge，避免在 skills.sh 索引不稳定时展示误导信息。
 - 在 README 安装说明中补充轻量的 skills.sh 生态入口。
 - 移除当前会 404 的单个 skills.sh skill 详情页链接。
+- 为全部 skills 补充 Codex UI 图标和品牌色元数据。
 
 ### 删除
 

@@ -1,4 +1,7 @@
 interface:
   display_name: "Design"
   short_description: "Create SDD technical designs"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+  brand_color: "#2563EB"
   default_prompt: "Use $design to clarify requirements, inspect the repository, and produce docs/features/<feature-name>/design.md and todo.md."
