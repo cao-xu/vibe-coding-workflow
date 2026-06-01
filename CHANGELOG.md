@@ -6,11 +6,13 @@
 
 - 将仓库从 Claude slash-command 插件迁移为纯 Agent Skills 包。
 - 将公开仓库入口更新为 `cao-xu/sdd-workflow-skills`。
-- 发布 4 个可复用 skills：
+- 发布 4 个 SDD 工作流 skills：
   - `design`
   - `review`
   - `test-design`
   - `code-review`
+- 新增通用问题定义优化 skill：
+  - `youding`（优定）
 - 更新 `README.md`，说明 `npx skills add` 和 skills.sh 安装方式。
 - 将 README 中暂不可用的 skills.sh 官方图片 badge 和详情页链接，改为稳定的静态 badge，并链接仓库内的 `SKILL.md` 文件。
 - 在 README 安装说明中补充轻量的 skills.sh 生态入口和单个 skill 页面链接。
@@ -43,6 +45,6 @@ npx skills add cao-xu/sdd-workflow-skills --skill '*' -a codex -a claude-code
 ### 验证
 
 - `find skills -name SKILL.md -print | sort`
-- 校验 4 个 skills 的 YAML frontmatter
+- 校验 5 个 skills 的 YAML frontmatter
 - `npx --yes skills add ./ --list`
 - 使用临时目录执行安装测试：`npx --yes skills add <local-repo> --skill '*' -a codex -a claude-code -y --copy`

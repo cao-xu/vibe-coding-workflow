@@ -1,0 +1,4 @@
+interface:
+  display_name: "优定"
+  short_description: "优化问题定义和答案要求"
+  default_prompt: "Use $youding to clarify my vague request through questions first, then produce a structured problem definition and answer requirements."
