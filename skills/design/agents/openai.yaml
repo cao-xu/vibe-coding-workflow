@@ -1,0 +1,4 @@
+interface:
+  display_name: "Design"
+  short_description: "Create SDD technical designs"
+  default_prompt: "Use $design to clarify requirements, inspect the repository, and produce docs/features/<feature-name>/design.md and todo.md."
