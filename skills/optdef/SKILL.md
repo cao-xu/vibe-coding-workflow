@@ -1,13 +1,13 @@
 ---
-name: youding
-description: Use when a user wants to clarify, scope, refine, or optimize an ambiguous question, request, prompt, answer requirement, writing task, research topic, or decision problem before getting the final answer; especially when they mention 优定, 问题定义, 答案要求, 需求澄清, or problem definition.
+name: optdef
+description: Use when a user wants to clarify, scope, refine, or optimize an ambiguous question, request, prompt, answer requirement, writing task, research topic, or decision problem before getting the final answer; especially when they mention OptDef, 优定, 问题定义, 答案要求, 需求澄清, or problem definition.
 ---
 
-# 优定：问题定义优化器
+# OptDef（优定）：问题定义优化器
 
 ## Overview
 
-优定把模糊、不完整或过宽的问题，转化为清晰、结构化、可执行的问题定义和答案要求。
+OptDef（优定）把模糊、不完整或过宽的问题，转化为清晰、结构化、可执行的问题定义和答案要求。
 
 This is a clarification skill, not a direct-answer skill. The goal is to define the problem before solving it.
 

@@ -1,12 +1,12 @@
 # SDD 工作流 Skills
 
-[![skills.sh ready](https://img.shields.io/badge/skills.sh-ready-111111?labelColor=555555)](#安装)
+[![skills.sh ready](https://img.shields.io/badge/skills.sh-ready-22c55e?labelColor=15803d)](https://www.skills.sh/)
 
 面向 Codex、Claude Code 以及其他支持 Agent Skills 格式的 SDD（Spec-Driven Development，规范驱动开发）工作流 skills。
 
 这个仓库以 SDD 工作流 skills 为主体：只把最适合沉淀成可复用 skill 的 4 个流程环节发布出来。完整开发工作流仍然包含实现、测试执行、文档整理和经验沉淀等步骤；这些步骤更依赖具体项目、运行环境和人的判断，因此不在本仓库中单独做成 skill。
 
-同时，本仓库也收录一个通用辅助 skill：`youding`（优定），用于在正式回答前优化问题定义和答案要求。
+同时，本仓库也收录一个通用辅助 skill：`optdef`（OptDef，优定），用于在正式回答前优化问题定义和答案要求。
 
 ## SDD 工作流 Skills
 
@@ -21,7 +21,7 @@
 
 | Skill | 用途 | 主要产物 |
 |-------|------|----------|
-| [`youding`](skills/youding/SKILL.md)（优定） | 先反问澄清，再把模糊问题整理为结构化的问题定义和答案要求 | 问题定义、答案要求、待确认事项 |
+| [`optdef`](skills/optdef/SKILL.md)（OptDef，优定） | 先反问澄清，再把模糊问题整理为结构化的问题定义和答案要求 | 问题定义、答案要求、待确认事项 |
 
 ## 安装
 
@@ -37,10 +37,10 @@ npx skills add cao-xu/sdd-workflow-skills --skill '*' -a codex -a claude-code
 npx skills add cao-xu/sdd-workflow-skills --skill design
 ```
 
-安装“优定”：
+安装 OptDef（优定）：
 
 ```bash
-npx skills add cao-xu/sdd-workflow-skills --skill youding
+npx skills add cao-xu/sdd-workflow-skills --skill optdef
 ```
 
 查看可用 skills：
@@ -57,7 +57,7 @@ npx skills add https://github.com/cao-xu/sdd-workflow-skills --skill design
 
 当前仓库已经按 skills CLI 支持的 GitHub repo 格式组织。若 skills.sh 网页详情页暂时没有索引到新仓库名，以 `npx skills add` 的发现和安装结果为准。
 
-Skills.sh 生态入口：[skills.sh](https://www.skills.sh/) · [`design`](https://www.skills.sh/cao-xu/sdd-workflow-skills/design) · [`review`](https://www.skills.sh/cao-xu/sdd-workflow-skills/review) · [`test-design`](https://www.skills.sh/cao-xu/sdd-workflow-skills/test-design) · [`code-review`](https://www.skills.sh/cao-xu/sdd-workflow-skills/code-review) · [`youding`](https://www.skills.sh/cao-xu/sdd-workflow-skills/youding)
+Skills.sh 生态入口：[skills.sh](https://www.skills.sh/)。当前单个 skill 详情页仍可能返回 404；安装与发现请以 `npx skills add cao-xu/sdd-workflow-skills --list` 为准。
 
 ## 工作流定位
 
@@ -71,7 +71,7 @@ Skills.sh 生态入口：[skills.sh](https://www.skills.sh/) · [`design`](https
 
 实现、测试执行、文档整理仍然是完整工作流的一部分，但它们应由人或普通 agent 根据具体项目执行。
 
-`youding`（优定）不是 SDD 流程步骤，而是通用的问题定义优化器。它适合在任何模糊请求、写作任务、研究问题、产品需求或 prompt 设计之前使用，先把“问题是什么”和“答案要满足什么标准”澄清出来。
+`optdef`（OptDef，优定）不是 SDD 流程步骤，而是通用的问题定义优化器。它适合在任何模糊请求、写作任务、研究问题、产品需求或 prompt 设计之前使用，先把“问题是什么”和“答案要满足什么标准”澄清出来。
 
 ## 文档结构
 
@@ -88,7 +88,7 @@ docs/features/<feature-name>/
 
 `<feature-name>` 使用 kebab-case，例如 `user-auth`、`chat-streaming`。
 
-`docs/features/<feature-name>/` 是 SDD 工作流文档目录。`youding` 通常不需要写入该目录，除非用户明确希望把澄清后的问题定义沉淀到某个功能文档中。
+`docs/features/<feature-name>/` 是 SDD 工作流文档目录。`optdef` 通常不需要写入该目录，除非用户明确希望把澄清后的问题定义沉淀到某个功能文档中。
 
 ## 项目记忆文件
 
