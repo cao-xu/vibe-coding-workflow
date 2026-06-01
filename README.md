@@ -1,6 +1,6 @@
 # SDD 工作流 Skills
 
-[在 skills.sh 查看](https://skills.sh/cao-xu/vibe-coding-workflow)
+[![skills.sh](https://www.skills.sh/b/cao-xu/vibe-coding-workflow)](https://www.skills.sh/cao-xu/vibe-coding-workflow)
 
 面向 Codex、Claude Code 以及其他支持 Agent Skills 格式的 SDD（Spec-Driven Development，规范驱动开发）工作流 skills。
 
