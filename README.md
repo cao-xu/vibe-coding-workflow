@@ -1,6 +1,6 @@
 # SDD 工作流 Skills
 
-[![skills.sh](https://www.skills.sh/b/cao-xu/vibe-coding-workflow)](https://www.skills.sh/cao-xu/vibe-coding-workflow)
+[![skills.sh](https://www.skills.sh/b/cao-xu/vibe-coding-workflow)](https://www.skills.sh/cao-xu/vibe-coding-workflow/design)
 
 面向 Codex、Claude Code 以及其他支持 Agent Skills 格式的 SDD（Spec-Driven Development，规范驱动开发）工作流 skills。
 
@@ -10,10 +10,10 @@
 
 | Skill | 用途 | 主要产物 |
 |-------|------|----------|
-| `design` | 澄清需求、调研仓库、输出技术方案 | `docs/features/<feature-name>/design.md`、`todo.md` |
-| `review` | 在实现前独立评审技术方案 | `review_notes.md` |
-| `test-design` | 基于需求和方案设计高 ROI 测试 | `test_design.md` |
-| `code-review` | 两阶段代码评审：先看代码质量，再看设计符合度 | `code_review.md` |
+| [`design`](https://www.skills.sh/cao-xu/vibe-coding-workflow/design) | 澄清需求、调研仓库、输出技术方案 | `docs/features/<feature-name>/design.md`、`todo.md` |
+| [`review`](https://www.skills.sh/cao-xu/vibe-coding-workflow/review) | 在实现前独立评审技术方案 | `review_notes.md` |
+| [`test-design`](https://www.skills.sh/cao-xu/vibe-coding-workflow/test-design) | 基于需求和方案设计高 ROI 测试 | `test_design.md` |
+| [`code-review`](https://www.skills.sh/cao-xu/vibe-coding-workflow/code-review) | 两阶段代码评审：先看代码质量，再看设计符合度 | `code_review.md` |
 
 ## 安装
 
