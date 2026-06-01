@@ -1,7 +1,7 @@
 interface:
-  display_name: "Code Review"
-  short_description: "Review code changes in two phases"
+  display_name: "代码评审"
+  short_description: "两阶段检查代码质量与设计符合度"
   icon_small: "./assets/icon.svg"
   icon_large: "./assets/icon.svg"
   brand_color: "#0F766E"
-  default_prompt: "Use $code-review to review code changes first by code quality, then against design.md, and produce code_review.md."
+  default_prompt: "使用 $code-review 先检查代码质量，再对照 design.md 检查设计符合度，并产出 code_review.md。"

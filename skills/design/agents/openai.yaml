@@ -1,7 +1,7 @@
 interface:
-  display_name: "Design"
-  short_description: "Create SDD technical designs"
+  display_name: "需求设计"
+  short_description: "需求澄清、仓库调研与技术方案设计"
   icon_small: "./assets/icon.svg"
   icon_large: "./assets/icon.svg"
   brand_color: "#2563EB"
-  default_prompt: "Use $design to clarify requirements, inspect the repository, and produce docs/features/<feature-name>/design.md and todo.md."
+  default_prompt: "使用 $design 澄清需求、调研仓库，并产出 docs/features/<feature-name>/design.md 和 todo.md。"

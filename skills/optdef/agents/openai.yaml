@@ -1,7 +1,7 @@
 interface:
   display_name: "OptDef（优定）"
-  short_description: "优化问题定义和答案要求"
+  short_description: "先反问澄清，再优化问题定义和答案要求"
   icon_small: "./assets/icon.svg"
   icon_large: "./assets/icon.svg"
   brand_color: "#16A34A"
-  default_prompt: "Use $optdef to clarify my vague request through questions first, then produce a structured problem definition and answer requirements."
+  default_prompt: "使用 $optdef 先通过反问澄清我的模糊请求，再整理结构化的问题定义和答案要求。"

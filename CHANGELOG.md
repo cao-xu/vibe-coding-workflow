@@ -18,6 +18,7 @@
 - 在 README 安装说明中补充轻量的 skills.sh 生态入口。
 - 移除当前会 404 的单个 skills.sh skill 详情页链接。
 - 为全部 skills 补充 Codex UI 图标和品牌色元数据。
+- 将 Codex UI 中的 skill 展示名和说明改为中文。
 
 ### 删除
 

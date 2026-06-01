@@ -1,7 +1,7 @@
 interface:
-  display_name: "Test Design"
-  short_description: "Design practical feature tests"
+  display_name: "测试设计"
+  short_description: "基于需求和方案设计高 ROI 测试用例"
   icon_small: "./assets/icon.svg"
   icon_large: "./assets/icon.svg"
   brand_color: "#F59E0B"
-  default_prompt: "Use $test-design to design high-ROI tests and produce docs/features/<feature-name>/test_design.md."
+  default_prompt: "使用 $test-design 设计高 ROI 测试方案，并产出 docs/features/<feature-name>/test_design.md。"
