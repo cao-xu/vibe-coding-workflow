@@ -1,5 +1,5 @@
 interface:
-  display_name: "方案评审"
+  display_name: "Review"
   short_description: "独立评审 SDD 技术方案并给出改进建议"
   icon_small: "./assets/icon.svg"
   icon_large: "./assets/icon.svg"

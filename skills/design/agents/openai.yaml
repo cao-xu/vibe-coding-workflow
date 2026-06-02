@@ -1,5 +1,5 @@
 interface:
-  display_name: "需求设计"
+  display_name: "Design"
   short_description: "需求澄清、仓库调研与技术方案设计"
   icon_small: "./assets/icon.svg"
   icon_large: "./assets/icon.svg"

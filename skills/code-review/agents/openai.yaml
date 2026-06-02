@@ -1,5 +1,5 @@
 interface:
-  display_name: "代码评审"
+  display_name: "Code Review"
   short_description: "两阶段检查代码质量与设计符合度"
   icon_small: "./assets/icon.svg"
   icon_large: "./assets/icon.svg"

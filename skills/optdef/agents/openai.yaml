@@ -1,5 +1,5 @@
 interface:
-  display_name: "OptDef（优定）"
+  display_name: "OptDef"
   short_description: "先反问澄清，再优化问题定义和答案要求"
   icon_small: "./assets/icon.svg"
   icon_large: "./assets/icon.svg"

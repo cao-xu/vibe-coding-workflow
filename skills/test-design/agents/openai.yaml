@@ -1,5 +1,5 @@
 interface:
-  display_name: "测试设计"
+  display_name: "Test Design"
   short_description: "基于需求和方案设计高 ROI 测试用例"
   icon_small: "./assets/icon.svg"
   icon_large: "./assets/icon.svg"
