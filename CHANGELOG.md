@@ -14,9 +14,9 @@
 - 新增通用问题定义优化 skill：
   - `optdef`（OptDef，优定）
 - 更新 `README.md`，说明 `npx skills add` 和 skills.sh 安装方式。
-- 移除 README 顶部的 skills.sh badge，避免在 skills.sh 索引不稳定时展示误导信息。
+- 在 README 顶部恢复 skills.sh badge，链接到已索引的仓库详情页。
 - 在 README 安装说明中补充轻量的 skills.sh 生态入口。
-- 移除当前会 404 的单个 skills.sh skill 详情页链接。
+- README 保留仓库级 skills.sh 入口，单个 skill 详情可从 skills.sh 仓库页进入。
 - 为全部 skills 补充 Codex UI 图标和品牌色元数据。
 - 将 Codex UI 中的 skill 展示名保持为英文，说明保留中文，便于识别和触发。
 
