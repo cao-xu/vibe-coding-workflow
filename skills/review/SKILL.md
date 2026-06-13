@@ -1,102 +1,124 @@
 ---
 name: review
-description: Independent SDD technical design review. Use when a feature has docs/features/<feature-name>/design.md or an equivalent technical plan and needs objective review for requirement coverage, logic completeness, repository compatibility, technical choices, verifiability, and implementation path before testing or coding.
+description: SDD 技术方案独立评审流程。适用于已经有 docs/features/<feature-name>/design.md 或等价技术方案，需要在测试设计或开发前，从需求覆盖、逻辑完整性、代码兼容性、技术选型、可验证性和实现路径六个维度进行客观评审。
 ---
 
-# Review
+# Review：技术方案独立评审
 
-## Overview
+## 角色
 
-Act as an independent technical reviewer. Review the design artifact, not the conversation that produced it.
+你是一位独立技术评审者，负责客观审查技术方案，而不是维护原方案的面子。
 
-Use this skill after `design` and before `test-design` or implementation when the change is risky, cross-module, ambiguous, or expensive to reverse.
+评审目标不是证明自己更聪明，而是让方案更稳、更小、更可执行。
 
-## Core Rules
+## 上下文隔离原则
 
-- Maintain context separation: review the design as an outsider.
-- Inspect the repository enough to ground every important finding in real files, APIs, or patterns.
-- Be collaborative and specific. The goal is a better plan, not a debate win.
-- Prefer feasible, smaller paths over idealized rewrites.
-- Read `AGENTS.md` or `CLAUDE.md` if present, but do not modify them.
-- Never auto-write project memory files. If something may be worth remembering, output it under `Memory update candidates` for the human to decide.
+- 只评审方案产物和仓库事实，不依赖设计过程中的对话。
+- 保持局外人视角，敢于质疑底层假设。
+- 每个重要意见都要尽量落到真实文件、模块、接口或项目模式上。
+- 可以读取 `AGENTS.md` 或 `CLAUDE.md` 作为项目上下文，但不得自动修改。
+- 不要自动追加、更新或声明已更新 `AGENTS.md` / `CLAUDE.md`。如有可沉淀经验，只输出 `Memory update candidates`。
 
-## Required Inputs
+## 输入要求
 
-- Feature name, or enough context to locate `docs/features/<feature-name>/design.md`.
-- Requirement summary or acceptance criteria.
-- `docs/features/<feature-name>/design.md`.
+需要以下信息：
 
-If the feature name is missing and cannot be inferred, ask for it before reviewing.
+- 功能名，或足够定位 `docs/features/<feature-name>/design.md` 的上下文。
+- 需求摘要或验收标准。
+- 技术方案：`docs/features/<feature-name>/design.md`。
 
-## Workflow
+如果功能名缺失且无法从上下文推断，先向用户确认。
 
-1. Scan repository context:
-   - Project structure and relevant modules.
-   - Existing architecture patterns and dependencies.
-   - `AGENTS.md` or `CLAUDE.md` if present.
+## 评审流程
 
-2. Check requirement clarity:
-   - If the requirement is too vague to review, ask concise clarification questions.
-   - If it is clear, continue to the six review dimensions.
+1. 扫描仓库上下文：
+   - 项目结构和相关模块。
+   - 现有架构模式、依赖和约定。
+   - 如存在 `AGENTS.md` 或 `CLAUDE.md`，读取其中的项目经验。
 
-3. Review six dimensions:
-   - Requirement coverage: does the plan solve the core problem without unnecessary scope?
-   - Logic completeness: are normal, boundary, and failure paths covered?
-   - Code compatibility: does it fit existing architecture and reuse available code?
-   - Technical choice: are dependencies, abstractions, and data shapes justified?
-   - Verifiability: are success criteria and test scenarios executable?
-   - Implementation path: is the sequence short, safe, and realistically sized?
+2. 检查需求清晰度：
+   - 如果需求或验收标准模糊，先提出简洁的澄清问题。
+   - 如果需求清楚，直接进入六维评审。
 
-4. Decide the conclusion:
-   - Pass: no high-risk issue; proceed.
-   - Pass after adjustment: medium issues need edits but no re-review.
-   - Redesign required: core requirement, architecture, or risk problem blocks implementation.
+3. 六维评审：
+   - 需求覆盖：是否解决核心问题？是否过度设计？
+   - 逻辑完整：是否覆盖正常、边界和失败路径？
+   - 代码兼容：是否符合现有架构？是否复用已有能力？
+   - 技术选型：依赖、抽象、数据结构是否必要且合理？
+   - 可验证性：成功标准和测试场景是否可执行？
+   - 实现路径：步骤是否短、安全、可落地？
 
-5. Save review notes:
-   - Write `docs/features/<feature-name>/review_notes.md` when the human has asked you to persist the review.
-   - If not writing files in the current environment, provide the complete markdown content.
+4. 给出结论：
+   - 通过：无高风险问题，可以进入下一步。
+   - 调整后通过：存在中风险问题，修改后通常无需再次评审。
+   - 需要重新设计：核心需求、架构或风险问题阻塞实现。
 
-## Output Shape
+5. 保存或输出评审记录：
+   - 用户要求落盘时，写入 `docs/features/<feature-name>/review_notes.md`。
+   - 如果当前环境不适合写文件，直接输出完整 Markdown 内容。
+
+## 输出格式
 
 ```markdown
-# Design Review: <feature-name>
+# 方案评审：<feature-name>
 
-## Summary
-- Conclusion: Pass | Pass after adjustment | Redesign required
-- Reason:
+## 评审总结
+- 结论：通过 / 调整后通过 / 需要重新设计
+- 核心理由：
 
-## Strengths
-- ...
+## 亮点
+- [亮点 1]
+- [亮点 2]
 
-## Findings
-| Severity | Area | Finding | Recommendation |
-|----------|------|---------|----------------|
+## 问题与建议
+| 级别 | 维度 | 问题 | 建议 |
+|------|------|------|------|
+| 高/中/低 | [维度] | [问题，尽量引用具体文件或方案段落] | [可操作建议] |
 
-## Six-Dimension Checklist
-| Dimension | Result | Notes |
-|-----------|--------|-------|
+## 六维检查表
+| 维度 | 结果 | 说明 |
+|------|------|------|
+| 需求覆盖 | 通过/需调整/阻塞 | |
+| 逻辑完整 | 通过/需调整/阻塞 | |
+| 代码兼容 | 通过/需调整/阻塞 | |
+| 技术选型 | 通过/需调整/阻塞 | |
+| 可验证性 | 通过/需调整/阻塞 | |
+| 实现路径 | 通过/需调整/阻塞 | |
 
-## Required Design Changes
-- ...
+## 必须修改项
+- [如果没有，写“无”]
 
-## Open Discussion
-- ...
+## 开放讨论
+以上是我的评审意见。如果你对某些点有不同看法，可以反驳；我们达成共识后再进入下一步。
+
+## 下一步
+- 如果通过：进入 test-design
+- 如果调整后通过：先更新 design.md，再进入 test-design
+- 如果需要重新设计：回到 design
 ```
 
-## Severity Guidance
+## 快速评审模式
 
-- High: core goal cannot be met, security/privacy issue, severe architecture mismatch, unverifiable design.
-- Medium: likely implementation risk, missing edge cases, unclear contracts, avoidable complexity.
-- Low: clarity, naming, sequencing, or optional simplification.
+如果方案满足以下条件，可以简化评审：
+
+- 改动范围不超过 3 个文件。
+- 无架构变化。
+- 无新依赖。
+- 验证策略明确。
+
+快速评审只输出：
+
+1. 一句话结论。
+2. 关键风险清单。
+3. 下一步行动。
 
 ## Memory update candidates
 
-Only include this section when a finding is likely to help future, unrelated work in the same project.
+如果评审中发现可复用经验，只输出候选项：
 
 ```markdown
 ## Memory update candidates
-
-These are suggestions only. Do not write them to `AGENTS.md` or `CLAUDE.md` unless the human explicitly asks.
-
-- [category] [candidate]: [why it may be reusable]
+- [候选经验]：建议写入 AGENTS.md / CLAUDE.md 的原因
 ```
+
+不要自动写入项目记忆文件。

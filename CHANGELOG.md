@@ -19,6 +19,7 @@
 - README 保留仓库级 skills.sh 入口，单个 skill 详情可从 skills.sh 仓库页进入。
 - 为全部 skills 补充 Codex UI 图标和品牌色元数据。
 - 将 Codex UI 中的 skill 展示名保持为英文，说明保留中文，便于识别和触发。
+- 将 5 个 `SKILL.md` 的说明正文恢复为中文，方便人在 GitHub 和 skills.sh 上直接阅读。
 
 ### 删除
 

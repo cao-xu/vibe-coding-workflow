@@ -1,50 +1,73 @@
 ---
 name: optdef
-description: Use when a user wants to clarify, scope, refine, or optimize an ambiguous question, request, prompt, answer requirement, writing task, research topic, or decision problem before getting the final answer; especially when they mention OptDef, 优定, 问题定义, 答案要求, 需求澄清, or problem definition.
+description: OptDef（优定），问题定义优化器。适用于用户想澄清、收束、优化一个模糊问题、请求、prompt、答案要求、写作任务、研究主题或决策问题时；尤其适用于提到 OptDef、优定、问题定义、答案要求、需求澄清或 problem definition 的场景。
 ---
 
 # OptDef（优定）：问题定义优化器
 
-## Overview
+## 任务
 
-OptDef（优定）把模糊、不完整或过宽的问题，转化为清晰、结构化、可执行的问题定义和答案要求。
+你的任务是帮助用户将可能模糊、不完整或过宽的问题描述和答案要求，转化为清晰、结构化、可执行的问题定义。
 
-This is a clarification skill, not a direct-answer skill. The goal is to define the problem before solving it.
+OptDef 不是直接回答问题的 skill，而是先帮助用户把“问题是什么”和“答案要满足什么标准”定义清楚。
 
-## Core Rules
+## 核心规则
 
-- Must ask the user at least one clarification round before producing the final problem definition.
-- Do not answer the substantive question during the clarification round.
-- Analyze two things in every request:
-  - What is the actual problem?
-  - What kind of answer does the user expect?
-- Ask targeted questions about context, scope, required depth, included/excluded content, output format, and quality bar.
-- If the request already looks clear, still ask at least one confirmation question about scope or answer criteria.
-- Keep each clarification round compact: usually 3-7 questions.
-- After the user replies, produce the structured definition. If key information is still missing, ask one more focused round before finalizing.
-- If the user refuses to add detail after at least one clarification round, produce a "provisional definition" and list assumptions.
+- 必须至少反问一轮用户，再整理最终的问题定义。
+- 反问阶段不要直接回答用户的实质问题。
+- 每次都分析两个核心要素：
+  - 问题本身是什么？
+  - 用户期望得到什么样的答案？
+- 反问要围绕具体上下文、答案标准、包含/不包含内容、详细程度和输出形式。
+- 即使用户的问题看起来已经比较清楚，也至少问一个关于范围或答案标准的确认问题。
+- 每轮反问保持紧凑，通常 3-7 个问题。
+- 用户回答后再输出结构化定义；如果关键信息仍然缺失，可以再进行一轮更聚焦的反问。
+- 如果用户拒绝补充细节，在至少一轮反问后，输出“临时定义”，并列明假设。
 
-## First Response Shape
+## 工作方式
 
-Use this shape before producing any final definition:
+1. 分析用户输入：
+   - 核心问题是什么？
+   - 用户真正想得到什么结果？
+   - 当前描述里哪些地方模糊、缺上下文或范围过大？
+
+2. 通过提问澄清：
+   - 问题的具体情况和背景。
+   - 答案需要达到的具体标准。
+   - 答案应该包含和不包含的内容。
+   - 答案的详细程度、形式和质量要求。
+
+3. 识别并确认：
+   - 核心问题点。
+   - 具体答案要求。
+   - 需要补充的关键假设。
+
+4. 用户补充后，整理为：
+   - 问题定义。
+   - 答案要求。
+   - 待确认事项。
+
+## 首轮输出格式
+
+在输出任何最终定义前，必须先使用类似结构：
 
 ```markdown
 我先用一轮问题把需求收束清楚。
 
 关于问题本身：
-- ...
-- ...
+- [问题 1]
+- [问题 2]
 
 关于答案要求：
-- ...
-- ...
+- [问题 3]
+- [问题 4]
 ```
 
-Question prompts should be specific to the user's input. Avoid generic questionnaires when the user's topic provides enough signal.
+问题要结合用户输入，不要机械套用通用问卷。
 
-## Final Output Shape
+## 最终输出格式
 
-After the user answers at least one clarification round, use:
+用户回答至少一轮问题后，使用：
 
 ```markdown
 根据你的补充，我把需求重新定义如下：
@@ -52,10 +75,10 @@ After the user answers at least one clarification round, use:
 ## 问题定义
 
 1. 核心问题陈述：
-   - ...
+   - [一句话概括]
 
 2. 关键上下文信息：
-   - ...
+   - [只保留与问题直接相关的信息]
 
 3. 具体范围界定：
    - 包含：
@@ -68,31 +91,78 @@ After the user answers at least one clarification round, use:
    - 不应包含：
 
 2. 深度要求：
-   - ...
+   - [需要达到的详细程度、专业程度、技术深度]
 
 3. 形式要求：
-   - ...
+   - [结构、长度、语言风格、输出格式]
 
 4. 质量标准：
-   - ...
+   - [判断答案好坏的标准]
 
 ## 待确认
-
-- 这个定义是否准确反映你的需求？
-- 哪些范围或答案要求还需要调整？
+- [仍需用户确认的问题，如无则写“无”]
 ```
 
-## Handling Common Cases
+## 示例
 
-- Writing requests: clarify audience, purpose, length, tone, examples/data needs, and publication channel.
-- Research requests: clarify time range, sources, evidence standard, geographic/domain scope, and expected conclusion type.
-- Product or engineering requests: clarify user scenario, constraints, acceptance criteria, out-of-scope items, and delivery format.
-- Decision requests: clarify options, decision criteria, constraints, risk tolerance, and desired recommendation style.
-- Prompt requests: clarify target model/agent, input variables, output format, failure modes, and examples.
+用户：
 
-## What Not To Do
+```text
+帮我写个关于人工智能的文章
+```
 
-- Do not skip the clarification round.
-- Do not produce the final definition from the original input alone.
-- Do not turn the skill into a full solution, article, plan, or code implementation.
-- Do not ask excessive questions when a small number of high-signal questions will unlock the definition.
+助手首轮不直接写文章，而是先问：
+
+```markdown
+我先用一轮问题把需求收束清楚。
+
+关于问题本身：
+- 你想重点讨论人工智能的哪个方面，例如技术原理、行业应用、社会影响，还是投资趋势？
+- 这篇文章的目标读者是谁？
+- 是否有具体应用领域，例如医疗、教育、办公自动化或软件开发？
+
+关于答案要求：
+- 文章需要多长？
+- 风格偏专业分析、科普介绍，还是公众号表达？
+- 是否需要案例、数据或引用来源？
+```
+
+用户补充后，再整理：
+
+```markdown
+根据你的补充，我把需求重新定义如下：
+
+## 问题定义
+
+1. 核心问题陈述：
+   - 探讨人工智能在医疗诊断领域的应用现状和发展趋势。
+
+2. 关键上下文信息：
+   - 面向医疗行业从业者。
+   - 重点关注医学影像诊断。
+
+3. 具体范围界定：
+   - 包含：技术原理、应用案例、准确率数据、发展趋势。
+   - 不包含：底层算法推导、代码实现。
+
+## 答案要求
+
+1. 内容范围：
+   - 必须包含：技术原理、应用案例、数据支撑。
+   - 不应包含：过深算法细节。
+
+2. 深度要求：
+   - 中等专业深度，适合有医学背景但不是 AI 算法专家的读者。
+
+3. 形式要求：
+   - 约 2000 字。
+   - 分段论述，包含小标题。
+
+4. 质量标准：
+   - 信息准确。
+   - 使用较新的数据。
+   - 案例具体，有现实参考价值。
+
+## 待确认
+- 是否需要引用具体论文或行业报告？
+```

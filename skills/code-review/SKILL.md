@@ -1,131 +1,169 @@
 ---
 name: code-review
-description: Independent two-phase SDD code review. Use after implementation and test execution when Codex should review git diffs or commits first from pure code quality, safety, maintainability, and correctness, then against docs/features/<feature-name>/design.md for design compliance, producing code_review.md with Blocker, Major, Minor, and Good findings.
+description: SDD 两阶段代码评审流程。适用于开发和测试执行完成后，对 git diff、commit 或分支范围先做纯代码质量审查，再对照 docs/features/<feature-name>/design.md 检查设计符合度，并输出 code_review.md。
 ---
 
-# Code Review
+# Code Review：代码评审
 
-## Overview
+## 角色
 
-Act as an independent reviewer. Do not review code in the same mental frame as the implementing agent.
+你是一位独立代码评审者，以局外人视角审查代码质量和设计符合度。
 
-Use this skill after implementation is complete and tests have been run or explicitly deferred. Its output should help the human decide whether the change can merge.
+不要站在实现者的思路里帮代码找理由。代码评审的价值在于发现路径依赖、遗漏、边界问题和设计偏离。
 
-## Core Rules
+## 使用前提
 
-- Keep review context separate from development context.
-- Phase 1 reviews only code and diffs. Do not read `design.md` until Phase 2.
-- Phase 2 checks design compliance against `docs/features/<feature-name>/design.md`.
-- Lead with findings ordered by severity.
-- Every serious finding must include file path, line or tight location, risk, and concrete recommendation.
-- Do not nitpick style unless it creates real maintainability risk.
-- Read `AGENTS.md` or `CLAUDE.md` if present, but do not modify them.
-- Never auto-write project memory files. If something may be worth remembering, output it under `Memory update candidates` for the human to decide.
+- 开发已经完成。
+- 测试已经通过，或用户明确说明测试未运行/暂缓。
+- 有可评审的 diff、commit、commit range 或分支范围。
+- 如有设计文档，第二阶段需要读取 `docs/features/<feature-name>/design.md`。
 
-## Required Inputs
+## 核心原则
 
-- Feature name.
-- Diff source: working tree, staged changes, commit hash, commit range, or branch range.
-- Brief change summary.
-- `docs/features/<feature-name>/design.md` for Phase 2 when available.
+- 代码评审应尽量使用独立上下文，不要和开发上下文混在一起。
+- 第一阶段只看代码和 diff，不读取 `design.md`。
+- 第二阶段再读取 `design.md`，检查实现是否符合设计。
+- 结论先行，问题按严重程度排序。
+- 严重问题必须包含位置、风险和可操作建议。
+- 不因个人偏好纠结无关风格，除非影响可维护性。
+- 可以读取 `AGENTS.md` 或 `CLAUDE.md` 作为项目约定，但不得自动修改。
+- 不要自动追加、更新或声明已更新 `AGENTS.md` / `CLAUDE.md`。如有可沉淀经验，只输出 `Memory update candidates`。
 
-If the feature name or diff range is missing, ask for it unless it can be inferred from the current branch and working tree.
+## 输入要求
 
-## Workflow
+需要以下信息：
 
-1. Confirm scope:
-   - Feature name.
-   - Diff or commit range.
-   - Whether tests passed, failed, or were not run.
+- 功能名。
+- diff 来源：工作区、暂存区、commit hash、commit range 或 branch range。
+- 简短变更说明。
+- 测试状态：通过、失败、未运行或暂缓。
+- 如存在设计文档：`docs/features/<feature-name>/design.md`。
 
-2. Collect code changes:
-   - Use `git diff`, `git diff --cached`, `git show`, or the provided range.
-   - Inspect related files enough to understand changed behavior.
-   - Read `AGENTS.md` or `CLAUDE.md` if present.
+如果功能名或 diff 范围缺失，且无法从当前分支或工作区推断，先向用户确认。
 
-3. Phase 1: pure code review:
-   - Correctness and edge cases.
-   - Security and privacy.
-   - Performance and resource use.
-   - Readability and maintainability.
-   - Consistency with existing patterns.
-   - Test adequacy from the code perspective.
+## 工作流程
 
-4. Phase 2: design compliance:
-   - Read `docs/features/<feature-name>/design.md`.
-   - Check whether planned behavior, API/data contracts, files, and validation strategy were implemented.
-   - Flag private optimizations or scope changes that were not in the design.
+1. 确认评审范围：
+   - 功能名。
+   - diff / commit / branch 范围。
+   - 测试是否已经运行。
 
-5. Save or provide report:
-   - Write `docs/features/<feature-name>/code_review.md` when the human has asked you to persist it.
-   - If not writing files in the current environment, provide complete markdown content.
+2. 获取代码变更：
+   - 使用 `git diff`、`git diff --cached`、`git show` 或用户提供的范围。
+   - 阅读相关文件，理解变更行为。
+   - 如存在 `AGENTS.md` 或 `CLAUDE.md`，读取项目约定。
 
-## Severity
+3. 第一阶段：纯代码质量评审：
+   - 正确性和边界条件。
+   - 安全和隐私风险。
+   - 性能和资源使用。
+   - 可读性和可维护性。
+   - 与项目现有模式的一致性。
+   - 从代码视角判断测试是否充分。
 
-- Blocker: must fix before merge; bug, security issue, data loss risk, broken contract, missing core requirement.
-- Major: strongly recommended; likely future bug, maintainability issue, incomplete edge handling, weak tests.
-- Minor: optional improvement; clarity, small simplification, local style consistency.
-- Good: reusable positive pattern worth calling out.
+4. 第二阶段：设计符合度检查：
+   - 读取 `docs/features/<feature-name>/design.md`。
+   - 检查计划功能、接口、数据结构、文件改动和验证策略是否实现。
+   - 标记未在设计中说明的私自优化、范围扩大或契约变化。
 
-## Report Shape
+5. 保存或输出评审报告：
+   - 用户要求落盘时，写入 `docs/features/<feature-name>/code_review.md`。
+   - 如果当前环境不适合写文件，直接输出完整 Markdown 内容。
+
+## 问题分级
+
+- Blocker：合并前必须修复。包括 bug、安全问题、数据丢失风险、破坏契约、核心需求缺失。
+- Major：强烈建议修复。包括潜在 bug、可维护性风险、边界处理不足、测试不足。
+- Minor：可选改进。包括局部清晰度、轻量简化、局部风格一致性。
+- Good：值得肯定和复用的做法。
+
+## 输出格式
 
 ```markdown
-# Code Review: <feature-name>
+# 代码评审：<feature-name>
 
-## Review Info
-- Diff:
-- Tests:
-- Conclusion: Pass | Needs changes | Needs major rework
+## 评审信息
+- 代码范围：
+- 测试状态：
+- 结论：通过 / 需要修改 / 需要重大修改
 
-## Findings
+## 评审摘要
+- 总体评价：
+- Blocker：
+- Major：
+- Minor：
+- Good：
+
+## 第一阶段：代码质量评审
 
 ### Blocker
-#### B1: <title>
-- Location:
-- Problem:
-- Risk:
-- Recommendation:
+#### B1: [问题标题]
+- 位置：`path/to/file` Lx
+- 问题：
+- 风险：
+- 建议：
 
 ### Major
-#### M1: <title>
-- Location:
-- Problem:
-- Recommendation:
+#### M1: [问题标题]
+- 位置：
+- 问题：
+- 建议：
 
 ### Minor
-#### m1: <title>
-- Location:
-- Suggestion:
+#### m1: [问题标题]
+- 位置：
+- 建议：
 
 ### Good
-#### G1: <title>
-- Location:
-- Note:
+#### G1: [好的做法]
+- 位置：
+- 说明：
 
-## Design Compliance
-| Design Point | Status | Notes |
-|--------------|--------|-------|
+## 第二阶段：设计符合度检查
 
-## Open Questions
-- ...
+### 设计文档
+`docs/features/<feature-name>/design.md`
+
+### 符合度检查
+| 设计要点 | 实现状态 | 说明 |
+|----------|----------|------|
+| [要点] | 已实现/部分实现/未实现 | [说明] |
+
+### 偏离设计的改动
+- [如无，写“无”]
+
+## 结论与下一步
+- 是否可以合并：
+- 必须修复：
+- 建议修复：
+- 可接受风险：
 ```
 
-## Iteration
+## 双向评论
 
-When the developer responds:
+评审不是单向审判。开发者可能解释、反驳或修改。
 
-- Accept valid explanations and withdraw or downgrade findings.
-- Keep findings when the risk remains, and explain why.
-- Re-review changed code until all Blockers are resolved and all Major findings are either fixed or consciously accepted by the human.
+回应时使用：
+
+```markdown
+## 评审意见回应
+
+### B1: [问题标题]
+- 开发者反馈：
+- Reviewer 回应：
+  - 接受解释 / 调整建议 / 坚持原意见
+- 理由：
+```
+
+目标是达成共识，而不是赢得争论。所有 Blocker 清零后，才可以给出通过结论。
 
 ## Memory update candidates
 
-Only include this section when a finding is likely to help future, unrelated work in the same project.
+如果评审发现可复用经验，只输出候选项：
 
 ```markdown
 ## Memory update candidates
-
-These are suggestions only. Do not write them to `AGENTS.md` or `CLAUDE.md` unless the human explicitly asks.
-
-- [category] [candidate]: [why it may be reusable]
+- [候选经验]：建议写入 AGENTS.md / CLAUDE.md 的原因
 ```
+
+不要自动写入项目记忆文件。

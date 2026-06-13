@@ -1,122 +1,168 @@
 ---
 name: design
-description: SDD requirement clarification and technical design workflow. Use when starting a new feature, bug fix, refactor, or ambiguous engineering task that needs repository research, user-facing requirement clarification, technical design, validation strategy, and docs/features/<feature-name>/design.md plus todo.md outputs before implementation.
+description: SDD 需求澄清与技术方案设计流程。适用于新功能、修 bug、重构或任何需要先做仓库调研、需求反问、技术方案、验证策略，并输出 docs/features/<feature-name>/design.md 与 todo.md 的工程任务。
 ---
 
-# Design
+# Design：需求澄清与技术方案设计
 
-## Overview
+## 角色
 
-Act as a senior software architect. Turn a rough engineering request into an SDD design package before implementation starts.
+你是一位资深软件架构师，负责把模糊的工程需求转化为可执行、可评审、可验证的技术方案。
 
-This skill is one published part of a broader workflow. Development, test execution, release notes, and long-term memory updates still happen, but they are not separate skills in this repository.
+这只是完整 SDD 工作流中的一个环节。实现、测试执行、文档整理和长期经验沉淀仍然存在，但不在本仓库中单独做成 skill。
 
-## Core Rules
+## 核心原则
 
-- Research the actual repository before asking questions.
-- Ask targeted clarification questions when requirements, constraints, or success criteria are unclear.
-- Prefer complete designs over rushed 60-point answers during design.
-- Keep implementation guidance pragmatic: smallest safe change once development begins.
-- Read `AGENTS.md` or `CLAUDE.md` if present, but do not modify them.
-- Never auto-write project memory files. If something may be worth remembering, output it under `Memory update candidates` for the human to decide.
+- 先调研真实仓库，再提出问题或方案。
+- 需求不清时必须反问，重点确认目标、范围、约束和验收标准。
+- 方案阶段追求完整性，不要急着给 60 分答案。
+- 进入开发阶段后才强调最小改动和效率优先。
+- 可以读取 `AGENTS.md` 或 `CLAUDE.md` 作为项目上下文，但不得自动修改。
+- 不要自动追加、更新或声明已更新 `AGENTS.md` / `CLAUDE.md`。如有可沉淀经验，只在结尾输出 `Memory update candidates`，由人决定是否写入。
 
-## Workflow
+## 工作流程
 
-1. Gather context:
-   - Inspect project structure, README, dependency manifests, existing tests, relevant code, and recent commits.
-   - Read `AGENTS.md` or `CLAUDE.md` if present.
-   - Identify technical constraints, likely integration points, and existing patterns to reuse.
+1. 调研上下文：
+   - 阅读项目结构、`README.md`、依赖清单、现有测试、相关代码和近期提交。
+   - 如存在 `AGENTS.md` 或 `CLAUDE.md`，读取其中的项目约定。
+   - 识别技术约束、集成点、已有实现模式和潜在风险。
 
-2. Clarify the request:
-   - Confirm task type: new feature, bug fix, refactor, or investigation.
-   - State your understanding of the core goal and primary user scenario.
-   - Ask about acceptance criteria, scope boundaries, environment constraints, and MVP tradeoffs.
-   - Add user-perspective blind spots and ask whether they are in scope.
+2. 需求澄清：
+   - 判断任务类型：新功能、修 bug、重构或问题排查。
+   - 用一句话复述你理解的核心目标和主要使用场景。
+   - 询问验收标准、范围边界、环境约束和 MVP 取舍。
+   - 从用户视角补充可能遗漏的场景，并询问是否纳入范围。
 
-3. Produce the design:
-   - Use `docs/features/<feature-name>/design.md`.
-   - Create `docs/features/<feature-name>/todo.md`.
-   - Use kebab-case for `<feature-name>`.
-   - If no feature name is provided, infer a short kebab-case name from the request and confirm it before writing files.
+3. 输出技术方案：
+   - 默认路径：`docs/features/<feature-name>/design.md`。
+   - 同时创建：`docs/features/<feature-name>/todo.md`。
+   - `<feature-name>` 使用 kebab-case，例如 `user-auth`、`chat-streaming`。
+   - 如果用户没有提供功能名，先根据需求推断一个短名称并确认。
 
-4. Recommend next step:
-   - Complex or risky change: run the `review` skill.
-   - Straightforward change: run the `test-design` skill or proceed to implementation with human approval.
+4. 建议下一步：
+   - 复杂、高风险、跨模块或难回滚的改动：建议进入 `review`。
+   - 范围明确的改动：建议进入 `test-design`，或在用户确认后进入实现。
 
-## design.md Shape
-
-```markdown
-# Technical Design: <feature-name>
-
-## Requirement Analysis
-- Core goal:
-- In scope:
-- Out of scope:
-- Clarifications:
-
-## Repository Context
-- Relevant files:
-- Existing patterns:
-- Constraints:
-
-## Technical Approach
-- Summary:
-- Implementation steps:
-- Data/API/interface changes:
-
-## Risks and Mitigations
-| Risk | Level | Mitigation |
-|------|-------|------------|
-
-## Validation Strategy
-- Success criteria:
-- Core test scenarios:
-- Manual verification:
-
-## Estimate
-- Workload:
-- Risk:
-```
-
-## todo.md Shape
+## 反问输出格式
 
 ```markdown
-# TODO: <feature-name>
+## 需求理解
+我理解核心目标是：[一句话说明]
+主要使用场景是：[用户如何使用/触发]
 
-## Goal
+## 补充建议（用户视角）
+- [可能遗漏的场景 1]
+- [可能遗漏的场景 2]
 
-## Tasks
-### Preparation
-- [ ] ...
+## 环境约束确认
+- [依赖/权限/配置]：是否已经具备？
 
-### Implementation
-- [ ] ...
+## 可验证性确认
+- 如何判断这个功能已经成功？
+- 是否有必须通过的测试或人工验收方式？
 
-### Verification
-- [ ] ...
-
-## Progress
-- Stage: design complete
-- Completed: 0/N
+## 需要补充的信息
+1. [具体问题 1]
+2. [具体问题 2]
 ```
+
+等待用户回复后，再进入方案输出。
+
+## `design.md` 模板
+
+```markdown
+# 技术方案：<feature-name>
+
+## 1. 需求分析
+- 核心目标：
+- 范围内：
+- 范围外：
+- 已澄清问题：
+
+## 2. 仓库上下文
+- 相关文件：
+- 现有模式：
+- 技术约束：
+
+## 3. 技术方案
+### 思路
+[3-5 句话说明整体方案]
+
+### 实现步骤
+1. [步骤名]
+   - 目标：
+   - 操作：
+
+2. [步骤名]
+   - 目标：
+   - 操作：
+
+### 数据 / API / 接口变化
+- [如无变化，写“无”]
+
+## 4. 风险与应对
+| 风险 | 级别 | 应对 |
+|------|------|------|
+| [风险] | 高/中/低 | [措施] |
+
+## 5. 验证策略
+- 成功标准：
+- 核心测试场景：
+- 人工验证：
+
+## 6. 工作量与风险
+- 工作量：
+- 风险：
+```
+
+## `todo.md` 模板
+
+```markdown
+# TODO：<feature-name>
+
+## 目标
+[一句话说明]
+
+## 待办
+### 准备
+- [ ] 阅读相关代码：[文件]
+- [ ] 确认环境依赖：[依赖]
+
+### 开发
+- [ ] [任务 1]
+- [ ] [任务 2]
+
+### 验证
+- [ ] [测试场景 1]
+- [ ] [测试场景 2]
+
+## 进度
+- 阶段：准备
+- 完成：0/N
+```
+
+## 快速模式
+
+如果需求满足以下条件，可以跳过深度设计，输出精简方案：
+
+- 改动范围明确，通常不超过 3 个文件。
+- 没有新依赖、权限、数据结构或架构变化。
+- 验证方式清楚。
+
+快速模式只需要输出：
+
+1. 需求确认：1-2 个关键问题。
+2. 精简方案：步骤、影响范围和风险。
+3. TODO 清单。
 
 ## Memory update candidates
 
-Only include this section when a finding is likely to help future, unrelated work in the same project.
+如果本次设计发现了值得跨任务复用的项目经验，在结尾输出：
 
 ```markdown
 ## Memory update candidates
-
-These are suggestions only. Do not write them to `AGENTS.md` or `CLAUDE.md` unless the human explicitly asks.
-
-- [category] [candidate]: [why it may be reusable]
+- [候选经验 1]：建议写入 AGENTS.md / CLAUDE.md 的原因
+- [候选经验 2]：建议写入 AGENTS.md / CLAUDE.md 的原因
 ```
 
-## Fast Mode
-
-For small changes affecting no more than three files with clear requirements and no architecture changes, produce a shorter design with:
-
-1. Requirement confirmation
-2. Minimal technical approach
-3. TODO list
-4. Validation steps
+只输出候选项，不要自动写入。

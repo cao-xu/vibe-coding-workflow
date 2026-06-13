@@ -1,129 +1,149 @@
 ---
 name: test-design
-description: SDD test strategy and test design workflow. Use after a feature design exists and before implementation when Codex should design high-ROI unit, integration, E2E, regression, and manual verification scenarios; produce docs/features/<feature-name>/test_design.md and practical test script recommendations without executing the implementation.
+description: SDD 测试方案设计流程。适用于功能方案已经存在、开发尚未开始或刚准备开始时，基于需求和 design.md 设计高 ROI 的单元测试、集成测试、E2E、回归测试和人工验证方案，并输出 docs/features/<feature-name>/test_design.md。
 ---
 
-# Test Design
+# Test Design：测试方案设计
 
-## Overview
+## 角色
 
-Act as a pragmatic QA engineer. Design tests from the requirement and technical plan before implementation, with ROI as the main constraint.
+你是一位务实的 QA 工程师，擅长在开发前设计高价值、可执行、不过度的测试方案。
 
-This skill designs verification. It does not replace development or test execution.
+核心理念：测试设计先于开发。只要知道如何验证，功能实现就更不容易跑偏。
 
-## Core Rules
+## 核心原则
 
-- Test from requirements and design, not from already-written implementation.
-- Check existing test infrastructure before proposing new scripts.
-- Prefer E2E or integration coverage for simple glue and CRUD behavior.
-- Use unit tests only for high-ROI logic: branching business rules, algorithms, state machines, error handling, and pure transformations with many edge cases.
-- Every test must state purpose, expected signal, and pass/fail criteria.
-- Read `AGENTS.md` or `CLAUDE.md` if present, but do not modify them.
-- Never auto-write project memory files. If something may be worth remembering, output it under `Memory update candidates` for the human to decide.
+- 基于需求和技术方案设计测试，不基于已经写好的实现补测试。
+- ROI 优先：简单胶水逻辑、CRUD 和数据搬运优先用 E2E 或集成测试覆盖。
+- 单元测试只用于高价值逻辑：复杂分支、算法、状态机、错误处理、纯函数转换等。
+- 先检查项目已有测试基础设施，再提出测试脚本建议。
+- 每个测试都要说明目的、预期信号和通过/失败标准。
+- 可以读取 `AGENTS.md` 或 `CLAUDE.md` 作为项目上下文，但不得自动修改。
+- 不要自动追加、更新或声明已更新 `AGENTS.md` / `CLAUDE.md`。如有可沉淀经验，只输出 `Memory update candidates`。
 
-## Required Inputs
+## 输入要求
 
-- Feature name, or enough context to locate `docs/features/<feature-name>/`.
-- `docs/features/<feature-name>/design.md`.
-- Requirement summary or acceptance criteria.
+需要以下信息：
 
-If the feature name is missing and cannot be inferred, ask for it before designing tests.
+- 功能名，或足够定位 `docs/features/<feature-name>/` 的上下文。
+- `docs/features/<feature-name>/design.md`。
+- 需求摘要或验收标准。
 
-## Workflow
+如果功能名缺失且无法推断，先向用户确认。
 
-1. Confirm module and paths:
-   - Design: `docs/features/<feature-name>/design.md`.
-   - Test design: `docs/features/<feature-name>/test_design.md`.
-   - Suggested E2E script: `tests/e2e/test_<feature_name>.sh` when shell E2E is appropriate.
-   - Suggested regression script: `tests/regression/test_regression_<feature_name>.sh` when regression shell coverage is appropriate.
+## 工作流程
 
-2. Inspect test infrastructure:
-   - Existing test commands, test directories, package scripts, CI config, and helper utilities.
-   - Existing E2E, regression, integration, or unit style.
-   - Environment dependencies such as `.env`, local services, databases, and auth.
+1. 确认模块和路径：
+   - 方案文档：`docs/features/<feature-name>/design.md`
+   - 测试方案：`docs/features/<feature-name>/test_design.md`
+   - 如适合 E2E shell 脚本：`tests/e2e/test_<feature_name>.sh`
+   - 如适合回归 shell 脚本：`tests/regression/test_regression_<feature_name>.sh`
 
-3. Confirm understanding before final test design:
-   - Core function being validated.
-   - Main user path.
-   - Planned test scenarios.
-   - Regression scope.
-   - Special boundary or risk cases.
+2. 检查测试基础设施：
+   - 测试命令、测试目录、package scripts、CI 配置。
+   - 现有 E2E、回归、集成或单元测试风格。
+   - 环境依赖：`.env`、本地服务、数据库、鉴权等。
 
-4. Design the test strategy:
-   - Decide whether unit tests are worth it.
-   - Specify E2E/integration tests for user-visible behavior.
-   - Specify regression tests around impacted existing paths.
-   - Include manual checks when human judgment or UI feel matters.
-   - Include exact commands when they can be inferred from the repo.
+3. 理解需求和设计：
+   - 阅读 `design.md`。
+   - 确认核心功能、主要用户路径、影响模块和风险点。
+   - 识别需要保护的既有行为。
 
-5. Persist or provide the test design:
-   - Write `docs/features/<feature-name>/test_design.md` when the human has asked you to persist it.
-   - If not writing files in the current environment, provide complete markdown content.
+4. 反问确认：
+   - 确认核心功能和主要用户场景是否理解正确。
+   - 确认计划覆盖的测试场景是否完整。
+   - 确认回归测试范围是否合适。
+   - 询问特殊边界、已知风险和通过/失败标准。
 
-## test_design.md Shape
+5. 设计测试方案：
+   - 判断是否需要单元测试，并说明理由。
+   - 设计 E2E / 集成测试覆盖用户可见行为。
+   - 设计回归测试覆盖受影响既有路径。
+   - 补充必要的人工验证项。
+   - 能从仓库推断命令时，给出具体运行命令。
+
+6. 保存或输出测试方案：
+   - 用户要求落盘时，写入 `docs/features/<feature-name>/test_design.md`。
+   - 如果当前环境不适合写文件，直接输出完整 Markdown 内容。
+
+## 单元测试 ROI 判断
+
+| 场景 | 单元测试建议 | 原因 |
+|------|--------------|------|
+| 简单 CRUD / 胶水接口 | 通常跳过 | E2E 或集成测试足够，单测维护成本高 |
+| 数据搬运 / 简单格式转换 | 通常跳过 | 逻辑简单，端到端验证更有价值 |
+| 复杂业务规则 | 建议保留 | 分支多，E2E 难以穷举 |
+| 算法 / 计算逻辑 | 建议保留 | 需要精确验证输入输出 |
+| 状态机 / 流程控制 | 建议保留 | 状态转换复杂，需要隔离验证 |
+| 错误处理 / 边界逻辑 | 按风险判断 | 异常路径可能难以通过 E2E 触发 |
+
+## 反问输出格式
 
 ```markdown
-# Test Design: <feature-name>
+## 我的理解
+- 核心功能：
+- 主要用户场景：
+- 涉及模块：
+- 主要风险：
 
-## Test Strategy
-- Scope:
-- Unit test decision:
-- E2E/integration approach:
-- Regression approach:
+## 计划覆盖的测试
+- E2E / 集成：
+- 回归：
+- 单元测试决策：
+- 人工验证：
 
-## Test Scenarios
-| Type | Scenario | Purpose | Pass/Fail Signal |
-|------|----------|---------|------------------|
-
-## Suggested Test Scripts
-### Functional
-- Path:
-- Command:
-- Notes:
-
-### Regression
-- Path:
-- Command:
-- Notes:
-
-## Manual Verification
-- ...
-
-## Execution Log
-To be filled during test execution.
+## 需要确认的问题
+1. [问题 1]
+2. [问题 2]
+3. [问题 3]
 ```
 
-## Unit Test ROI Decision
+等待用户回复后，再输出测试方案。
 
-Use this decision table:
+## `test_design.md` 模板
 
-| Scenario | Unit test? | Reason |
-|----------|------------|--------|
-| Simple CRUD or thin API glue | Usually no | E2E covers behavior with lower maintenance |
-| Data formatting with few branches | Usually no | Integration signal is enough |
-| Branch-heavy business logic | Yes | E2E cannot cover all combinations cheaply |
-| Algorithm or calculation | Yes | Needs precise input/output checks |
-| State machine or workflow control | Yes | State transitions need isolated coverage |
-| Error handling with many failure paths | Yes | Failures are hard to trigger end-to-end |
+```markdown
+# 测试方案：<feature-name>
 
-## Script Guidance
+## 1. 测试策略
+- 测试范围：
+- 单元测试决策：
+- E2E / 集成测试：
+- 回归测试：
+- 人工验证：
 
-When proposing shell scripts:
+## 2. 测试场景
+| 类型 | 场景 | 目的 | 通过/失败信号 |
+|------|------|------|---------------|
+| E2E/集成/回归/单元/人工 | [场景] | [验证什么] | [如何判断] |
 
-- Start with `set -euo pipefail`.
-- Include a short header comment explaining purpose, expected input, expected output, and pass signal.
-- Read environment from existing project conventions.
-- Keep scripts runnable without manual edits whenever possible.
-- Do not invent auth or service setup if the repo does not define it; state the missing prerequisite.
+## 3. 建议测试脚本
+### 功能测试
+- 路径：
+- 命令：
+- 说明：
+
+### 回归测试
+- 路径：
+- 命令：
+- 说明：
+
+## 4. 执行注意事项
+- 环境变量：
+- 本地服务：
+- 鉴权/数据准备：
+
+## 5. 执行记录
+- [待填写]
+```
 
 ## Memory update candidates
 
-Only include this section when a finding is likely to help future, unrelated work in the same project.
+如果测试设计发现可复用经验，只输出候选项：
 
 ```markdown
 ## Memory update candidates
-
-These are suggestions only. Do not write them to `AGENTS.md` or `CLAUDE.md` unless the human explicitly asks.
-
-- [category] [candidate]: [why it may be reusable]
+- [候选经验]：建议写入 AGENTS.md / CLAUDE.md 的原因
 ```
+
+不要自动写入项目记忆文件。
